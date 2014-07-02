@@ -5,3 +5,7 @@ Finally using the onbeforeunload event, an ajax request (synchronous) is sent to
 unique id, request url and time spent in seconds.
 
 Provide the ability to turn off/on display of how somebody spent their time on a page.
+
+Urls:
+
+http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html

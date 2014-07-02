@@ -1,3 +1,5 @@
+var db = require('../persist');
+
 /* GET home page. */
 exports.index = function(req, res){
   res.render('index', { title: 'Express :: Index' });
@@ -15,5 +17,7 @@ exports.record = function(req, res){
   var seconds = req.body.seconds;
   var url = req.body.url;
   console.log('Url: ' + url + '; duration = ' + seconds);
-  res.json({ result: true });
+  db.addAnalytic(url, seconds, function(){
+	res.json({ result: true });
+  });  
 };
