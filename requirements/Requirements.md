@@ -9,3 +9,4 @@ Provide the ability to turn off/on display of how somebody spent their time on a
 Urls:
 
 http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
+http://stackoverflow.com/questions/10108170/node-js-reuse-mongodb-reference
