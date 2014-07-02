@@ -11,6 +11,7 @@ exports.addAnalytic = function(url, secs, callback){
 	//Connect to mongodb database
 	db.open(function(err, db) {
 	  if (err) {
+		console.log('Error!!!');
 		throw err;
 	  }
 
@@ -20,7 +21,10 @@ exports.addAnalytic = function(url, secs, callback){
 
 	  var doc = { 'url': url, 'secs': secs, 'date_time': (new Date()).toString() };
 
+	  console.log('Retrieved the collection');
+
 	  collection.insert(doc, function(){
+		console.log('Inserted in to the collection');
 		callback();
 	  });
 	});

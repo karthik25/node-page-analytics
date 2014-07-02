@@ -18,6 +18,7 @@ exports.record = function(req, res){
   var url = req.body.url;
   console.log('Url: ' + url + '; duration = ' + seconds);
   db.addAnalytic(url, seconds, function(){
+	console.log('callback called');
 	res.json({ result: true });
   });  
 };
