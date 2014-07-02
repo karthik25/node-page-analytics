@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(type='text/javascript' src='http://code.jquery.com/jquery.min.js')
+    script(type='text/javascript' src='/javascripts/post.js')
+  body
+    .container
+      .header
+        ul.nav.nav-pills.pull-right
+          li
+            a(href='/') Home
+          li
+            a(href='/about') About
+          li
+            a(href='/contact') Contact
+        h3.text-muted Page Analytics
+      br
+      hr
+      .jumbotron
+        h1 Jumbotron heading
+        p.lead
+          | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+        p
+          a.btn.btn-lg.btn-success(href='#', role='button') Sign up today
+      block content
+      hr
+      p
+        | You've beein in this page for 
+        span#result 0 seconds
+        input#secresult(type='hidden', value='')
+        |  !!!
