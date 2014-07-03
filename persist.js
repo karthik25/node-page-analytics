@@ -27,3 +27,11 @@ exports.addAnalytic = function(url, secs, callback){
 		callback();
 	  });
 };
+
+exports.getAnalytics = function(callback){
+	var collection = db.collection('time_spent');
+
+	collection.find().toArray(function(err, items){
+		callback(items);
+	});
+};

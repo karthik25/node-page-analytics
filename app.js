@@ -28,6 +28,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/users', users.list);
+app.get('/usages', routes.usages);
 app.post('/record', routes.record);
 
 /// catch 404 and forwarding to error handler

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  table(border="1", cellpadding="15")
+    tr
+     th Url
+     th Duration
+    - each item in items
+     tr
+      td= item.url
+      td= item.secs
