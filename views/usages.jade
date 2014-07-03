@@ -2,11 +2,27 @@ extends layout
 
 block content
   h1= title
-  table(border="1", cellpadding="15")
-    tr
-     th Url
-     th Duration
-    - each item in items
-     tr
-      td= item.url
-      td= item.secs
+  script(type='text/javascript' src='/javascripts/core.js')
+  ul#tabs.nav.nav-tabs(role='tablist', data-tabs='tabs')
+   li.active
+    a(href='#home', role='tab', data-toggle='tab') Dashboard
+   li
+     a(href='#table', role='tab', data-toggle='tab') Tabular
+   li
+     a(href='#download', role='tab', data-toggle='tab') Download
+   li
+     a(href='#settings', role='tab', data-toggle='tab') Settings
+  div#tab-content.tab-content
+    div#home.tab-pane.active .
+    div#table.tab-pane ..
+     table(border="1", cellpadding="15")
+      tr
+       th Url
+       th Duration
+      - each item in items
+       tr
+        td= item.url
+        td
+         = item.description
+    div#download.tab-pane ...
+    div#settings.tab-pane ....

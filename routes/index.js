@@ -1,6 +1,16 @@
 var db = require('../persist');
 var config = require('../config');
 
+function getTimeSpent(sec) {
+    if (sec < 60) {
+        return sec + " seconds";
+    }
+
+    var mins = Math.floor(sec / 60);
+    var secs = sec % 60;
+    return mins + " minutes " + secs + " seconds";
+}
+
 /* GET home page. */
 exports.index = function(req, res){
   res.render('index', { title: 'Express :: Index' });
@@ -43,6 +53,9 @@ exports.record = function(req, res){
 
 exports.usages = function(req, res){
 	db.getAnalytics(function(items){
+		items.forEach(function(item){
+			item.description = getTimeSpent(item.secs);
+		});
 		res.render('usages', { items: items });
 	});
 };

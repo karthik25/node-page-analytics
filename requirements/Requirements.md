@@ -10,3 +10,4 @@ Urls:
 
 http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
 http://stackoverflow.com/questions/10108170/node-js-reuse-mongodb-reference
+http://jsfiddle.net/aQG6B/
