@@ -27,7 +27,8 @@ exports.contact = function(req, res){
 exports.record = function(req, res){
   var seconds = req.body.seconds;
   var url = req.body.url;
-  console.log('Url: ' + url + '; duration = ' + seconds);
+  var agent = req.headers['user-agent'];
+  console.log('Url: ' + url + '; duration = ' + seconds + '; Agent = ' + agent);
   
   var excluded = false;
   config.analytics.excludes.forEach(function(item){
@@ -45,7 +46,7 @@ exports.record = function(req, res){
 	return;
   }
   
-  db.addAnalytic(url, seconds, function(){
+  db.addAnalytic(url, seconds, agent, function(){
 	console.log('callback called');
 	res.json({ result: true });
   });  
@@ -56,6 +57,6 @@ exports.usages = function(req, res){
 		items.forEach(function(item){
 			item.description = getTimeSpent(item.secs);
 		});
-		res.render('usages', { items: items });
+		res.render('usages', { title: 'Express :: Usage Stats',items: items });
 	});
 };

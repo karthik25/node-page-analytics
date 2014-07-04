@@ -15,10 +15,10 @@ db.open(function(err, db) {
   console.log('Database connected!');
 });
 
-exports.addAnalytic = function(url, secs, callback){
+exports.addAnalytic = function(url, secs, agent, callback){
 	  var collection = db.collection('time_spent');
 
-	  var doc = { 'url': url, 'secs': secs, 'date_time': (new Date()).toString() };
+	  var doc = { 'url': url, 'secs': secs, 'date_time': (new Date()).toString(), 'user_agent': agent };
 
 	  console.log('Retrieved the collection');
 

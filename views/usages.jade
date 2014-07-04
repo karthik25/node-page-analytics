@@ -3,26 +3,46 @@ extends layout
 block content
   h1= title
   script(type='text/javascript' src='/javascripts/core.js')
+  link(rel='stylesheet' href='http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css')
+  script(type='text/javascript' src='http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js')
+  script(type='text/javascript' src='/javascripts/highcharts.js')
+  script(type='text/javascript' src='/javascripts/exporting.js')
   ul#tabs.nav.nav-tabs(role='tablist', data-tabs='tabs')
    li.active
     a(href='#home', role='tab', data-toggle='tab') Dashboard
    li
      a(href='#table', role='tab', data-toggle='tab') Tabular
    li
-     a(href='#download', role='tab', data-toggle='tab') Download
-   li
      a(href='#settings', role='tab', data-toggle='tab') Settings
   div#tab-content.tab-content
-    div#home.tab-pane.active .
-    div#table.tab-pane ..
-     table(border="1", cellpadding="15")
-      tr
-       th Url
-       th Duration
-      - each item in items
+    div#home.tab-pane.active
+     br
+     div#container(style='height: 300px; margin: 0 auto;')
+    div#table.tab-pane
+     br
+     table#durations(border="1", cellpadding="15", width="100%", class="table table-striped table-bordered")
+      thead
        tr
-        td= item.url
-        td
-         = item.description
-    div#download.tab-pane ...
+        th Url
+        th Duration
+        th User Agent
+        th Date
+      tfoot
+       tr
+        th Url
+        th Duration
+        th User Agent
+        th Date
+      tbody
+       - each item in items
+        tr
+         td
+          a(href=item.url)
+           = item.url
+         td
+          = item.description
+         td
+          = item.user_agent
+         td
+          = item.date_time
     div#settings.tab-pane ....
