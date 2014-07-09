@@ -30,7 +30,8 @@ app.get('/contact', routes.contact);
 app.get('/users', users.list);
 app.get('/usages', routes.usages);
 app.post('/record', routes.record);
-app.get('/getjson/:cUrl', routes.getjson);
+app.get('/getavgtime/:cUrl', routes.getavgtime);
+app.get('/getrequestct/:cUrl', routes.getrequestct);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

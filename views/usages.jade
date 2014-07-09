@@ -11,38 +11,61 @@ block content
    li.active
     a(href='#home', role='tab', data-toggle='tab') Dashboard
    li
-     a(href='#table', role='tab', data-toggle='tab') Tabular
+     a(href='#requests', role='tab', data-toggle='tab') Requests
+   li
+     a(href='#avgtimes', role='tab', data-toggle='tab') Avg. Time Spent
    li
      a(href='#settings', role='tab', data-toggle='tab') Settings
   div#tab-content.tab-content
     div#home.tab-pane.active
      br
      div#container(style='height: 300px; margin: 0 auto;')
-    div#table.tab-pane
      br
-     table#durations(border="1", cellpadding="15", width="100%", class="table table-striped table-bordered")
-      thead
-       tr
-        th Url
-        th Duration
-        th User Agent
-        th Date
-      tfoot
-       tr
-        th Url
-        th Duration
-        th User Agent
-        th Date
-      tbody
-       - each item in items
-        tr
-         td
-          a(href=item.url)
-           = item.url
-         td
-          = item.description
-         td
-          = item.user_agent
-         td
-          = item.date_time
-    div#settings.tab-pane ....
+     div#req-container(style='height: 300px; margin: 0 auto;')
+    div#requests.tab-pane
+     br
+     div.row
+      div.span6
+       table#durations(border="1", cellpadding="15", width="100%", class="table table-striped table-bordered")
+        thead
+         tr
+          th Url
+          th Duration
+          th User Agent
+          th Date
+        tfoot
+         tr
+          th Url
+          th Duration
+          th User Agent
+          th Date
+        tbody
+         - each item in items
+          tr
+           td
+            a(href=item.url)
+             = item.url
+           td
+             = item.description
+           td
+             = item.user_agent
+           td
+             = item.date_time
+      div.span6
+       | Some content
+    div#avgtimes.tab-pane ...
+    div#settings.tab-pane
+     br
+     div.row
+      div.span6
+       .panel.panel-default
+        .panel-heading Export
+        .panel-body
+         a.btn.btn-success
+          | Export All Requests
+      div.span6
+       .panel.panel-default
+        .panel-heading Delete
+        .panel-body
+         a.btn.btn-danger
+          | Delete All Data

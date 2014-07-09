@@ -64,7 +64,7 @@ exports.usages = function(req, res){
 
  *
  */
-exports.getjson = function(req, res){
+exports.getavgtime = function(req, res){
 	var reqUrl = req.query.cUrl;
 
 	if (reqUrl == null)
@@ -93,6 +93,10 @@ exports.getjson = function(req, res){
 
 		res.json(data);
 	});
+};
+
+exports.getrequestct = function(req, res){
+	res.json({ total: 345 });
 };
 
 function getTimeSpent(sec) {
