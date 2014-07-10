@@ -19,25 +19,52 @@ block content
   div#tab-content.tab-content
     div#home.tab-pane.active
      br
-     div#container(style='height: 300px; margin: 0 auto;')
-     br
-     div#req-container(style='height: 300px; margin: 0 auto;')
+     div.row
+      div.col-md-6
+       div#container(style='height: 300px; margin: 0 auto;')
+      div.col-md-6
+       div#req-container(style='height: 300px; margin: 0 auto;')
     div#requests.tab-pane
      br
      div.row
-      div.span6
-       table#durations(border="1", cellpadding="15", width="100%", class="table table-striped table-bordered")
+      div.col-md-8
+       table#reqs(border="1", cellpadding="15", class="table table-striped table-bordered")
         thead
          tr
           th Url
-          th Duration
           th User Agent
           th Date
         tfoot
          tr
           th Url
-          th Duration
           th User Agent
+          th Date
+        tbody
+         - each item in items
+          tr
+           td
+            a(href=item.url)
+             = item.url
+           td
+             = item.user_agent
+           td
+             = item.simple_date
+      div.col-md-4
+       | Some content
+    div#avgtimes.tab-pane
+     br
+     div.row
+      div.col-md-8
+       table#durations(border="1", cellpadding="15", class="table table-striped table-bordered")
+        thead
+         tr
+          th Url
+          th Duration
+          th Date
+        tfoot
+         tr
+          th Url
+          th Duration
           th Date
         tbody
          - each item in items
@@ -48,24 +75,27 @@ block content
            td
              = item.description
            td
-             = item.user_agent
-           td
-             = item.date_time
-      div.span6
+             = item.simple_date
+      div.col-md-4
        | Some content
-    div#avgtimes.tab-pane ...
     div#settings.tab-pane
      br
      div.row
-      div.span6
+      div.col-md-6
        .panel.panel-default
-        .panel-heading Export
+        .panel-heading Export Analytics Data
         .panel-body
          a.btn.btn-success
           | Export All Requests
-      div.span6
+         br
+         br
+         i includes page time spent info, referrers...
+      div.col-md-6
        .panel.panel-default
-        .panel-heading Delete
+        .panel-heading Purge Analytics Data
         .panel-body
          a.btn.btn-danger
           | Delete All Data
+         br
+         br
+         i cannot be undone!

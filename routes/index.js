@@ -16,6 +16,14 @@ exports.contact = function(req, res){
   res.render('contact', { title: 'Express :: Contact' });
 };
 
+exports.dashboard = function(req, res){
+  res.render('dashboard', { title: 'Express :: Dashboard' });
+};
+
+exports.settings = function(req, res){
+  res.render('settings', { title: 'Express :: Settings' });
+};
+
 exports.record = function(req, res){
   var seconds = req.body.seconds;
   var url = req.body.url;
@@ -49,6 +57,7 @@ exports.usages = function(req, res){
 	db.getAnalytics(function(items){
 		items.forEach(function(item){
 			item.description = getTimeSpent(item.secs);
+			item.simple_date = getDateStr(item.date_time);
 		});
 		res.render('usages', { title: 'Express :: Usage Stats',items: items });
 	});
@@ -69,7 +78,7 @@ exports.getavgtime = function(req, res){
 
 	if (reqUrl == null)
 	{
-		reqUrl = '/about';
+		reqUrl = '/';
 	}
 
 	console.log("Get chart data for: " + reqUrl);
@@ -96,7 +105,18 @@ exports.getavgtime = function(req, res){
 };
 
 exports.getrequestct = function(req, res){
-	res.json({ total: 345 });
+	db.getAnalytics(function(items){
+		var groupedWitCt = getItems(items, 5);
+		var total = _.reduce(groupedWitCt, function(memo, num){ return memo + parseInt(num.count); }, 0);
+		var pdata = [];
+		_.each(groupedWitCt, function(item){
+			var entry = [];
+			entry.push(item.page);
+			entry.push(Math.round((item.count / total) * 100));
+			pdata.push(entry);
+		});
+		res.json({ total: total, pages: groupedWitCt, piedata: pdata });
+	});
 };
 
 function getTimeSpent(sec) {
@@ -115,4 +135,20 @@ function getDateStr(fullDate){
 	var curr_month = d.getMonth() + 1; //Months are zero based
 	var curr_year = d.getFullYear();
 	return curr_month + '/' + curr_date + '/' + curr_year;
+}
+
+function getItems(entries, count){
+    var allPages = [];
+    var ugps = _.countBy(entries, 'url');
+    for (property in ugps) {
+        allPages.push({ page: property, count: ugps[property]});
+    }
+    
+    var sgps = _.sortBy(allPages, function(item){
+       return item.count * -1;   
+    });
+
+    var ct = sgps.length <= count ? sgps.length : sgps.length - count;    
+    var rPages = _.initial(sgps, ct);   
+    return rPages;
 }

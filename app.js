@@ -27,11 +27,13 @@ app.use(app.router);
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
+app.get('/dashboard', routes.dashboard);
+app.get('/settings', routes.settings);
 app.get('/users', users.list);
 app.get('/usages', routes.usages);
 app.post('/record', routes.record);
 app.get('/getavgtime/:cUrl', routes.getavgtime);
-app.get('/getrequestct/:cUrl', routes.getrequestct);
+app.get('/getrequestct', routes.getrequestct);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

@@ -1,12 +1,13 @@
 $(document).ready(function(){
+	$('#reqs').dataTable();
 	$('#durations').dataTable();
 });
 
 $(function () {
-	$.getJSON('/getavgtime/about', function(data){
+	$.getJSON('/getavgtime/%2F', function(data){
 		$('#container').highcharts({
 			title: {
-				text: 'Avg. time spent on /about',
+				text: 'Avg. time spent on /',
 				x: -20 //center
 			},
 			xAxis: {
@@ -34,12 +35,12 @@ $(function () {
 			series: data.yAxis
 		});
 	});
-	$.getJSON('/getrequestct/about', function(json){
+	$.getJSON('/getrequestct', function(json){
 		$('#req-container').highcharts(
 			{
 				chart: {
 					plotBackgroundColor: null,
-					plotBorderWidth: 1,//null,
+					plotBorderWidth: null,
 					plotShadow: false
 				},
 				title: {
@@ -67,18 +68,7 @@ $(function () {
 				series: [{
 					type: 'pie',
 					name: 'Browser share',
-					data: [
-						['/',   45.0],
-						['/about',       26.8],
-						{
-							name: '/contact',
-							y: 12.8,
-							sliced: true,
-							selected: true
-						},
-						['/dashboard',    8.5],
-						['/settings',     6.9]
-					]
+					data: json.piedata
 				}]
 			}
 		);
