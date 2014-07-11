@@ -1,4 +1,5 @@
 var mongodb = require('mongodb');
+var chalk = require('chalk');
 var config = require('./config');
 
 //Set up database stuff
@@ -12,7 +13,7 @@ db.open(function(err, db) {
 	throw err;
   }
 
-  console.log('Database connected!');
+  console.log(chalk.green('Database connected!'));
 });
 
 exports.addAnalytic = function(url, secs, agent, callback){

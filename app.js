@@ -5,6 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var chalk = require('chalk');
 
 var routes = require('./routes');
 var users = require('./routes/user');
@@ -25,11 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 app.get('/', routes.index);
+app.get('/users', users.list);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/dashboard', routes.dashboard);
 app.get('/settings', routes.settings);
-app.get('/users', users.list);
+
 app.get('/usages', routes.usages);
 app.post('/record', routes.record);
 app.get('/getavgtime/:cUrl', routes.getavgtime);
@@ -64,6 +66,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
+console.log(chalk.black.bgBlue.bold("Listening for requests at 3000"));
 app.listen(3000);
 
 module.exports = app;

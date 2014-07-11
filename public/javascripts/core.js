@@ -1,17 +1,10 @@
-$(document).ready(function(){
-	$('#reqs').dataTable();
-	$('#durations').dataTable();
-});
-
-$(function () {
-	$.getJSON('/getavgtime/%2F', function(data){
-		$('#container').highcharts({
+var options = {
 			title: {
 				text: 'Avg. time spent on /',
 				x: -20 //center
 			},
 			xAxis: {
-				categories: data.xAxis
+				categories: null
 			},
 			yAxis: {
 				title: {
@@ -32,9 +25,22 @@ $(function () {
 				verticalAlign: 'middle',
 				borderWidth: 0
 			},
-			series: data.yAxis
-		});
+			series: null
+		};
+
+$(document).ready(function(){
+	$('#reqs').dataTable();
+	$('#durations').dataTable();
+});
+
+$(function () {
+	$.getJSON('/getavgtime/%2F', function(data){
+		var home_chart_options = options;
+		home_chart_options.xAxis.categories = data.xAxis;
+		home_chart_options.series = data.yAxis;
+		$('#container').highcharts(home_chart_options);
 	});
+
 	$.getJSON('/getrequestct', function(json){
 		$('#req-container').highcharts(
 			{
