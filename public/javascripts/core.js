@@ -39,6 +39,7 @@ $(function () {
 		home_chart_options.xAxis.categories = data.xAxis;
 		home_chart_options.series = data.yAxis;
 		$('#container').highcharts(home_chart_options);
+		$('#avg_container').highcharts(home_chart_options);
 	});
 
 	$.getJSON('/getrequestct', function(json){
