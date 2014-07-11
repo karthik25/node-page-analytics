@@ -1,6 +1,6 @@
 var options = {
 			title: {
-				text: 'Avg. time spent on /',
+				text: '',
 				x: -20 //center
 			},
 			xAxis: {
@@ -34,12 +34,19 @@ $(document).ready(function(){
 });
 
 $(function () {
-	$.getJSON('/getavgtime/%2F', function(data){
+	$.ajax({
+	  type: "POST",
+	  url: '/getavgtime',
+	  data: { 'url': '/' },
+	  success: function(data){
 		var home_chart_options = options;
+		home_chart_options.title.text = 'Avg. time spent on /';
 		home_chart_options.xAxis.categories = data.xAxis;
 		home_chart_options.series = data.yAxis;
 		$('#container').highcharts(home_chart_options);
-		$('#avg_container').highcharts(home_chart_options);
+		$('#avg_container').highcharts(home_chart_options);		  
+	  },
+	  dataType: 'json'
 	});
 
 	$.getJSON('/getrequestct', function(json){

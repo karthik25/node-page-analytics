@@ -34,7 +34,7 @@ app.get('/settings', routes.settings);
 
 app.get('/usages', routes.usages);
 app.post('/record', routes.record);
-app.get('/getavgtime/:cUrl', routes.getavgtime);
+app.post('/getavgtime', routes.getavgtime);
 app.get('/getrequestct', routes.getrequestct);
 
 /// catch 404 and forwarding to error handler

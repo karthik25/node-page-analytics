@@ -1,6 +1,7 @@
 var db = require('../persist');
 var config = require('../config');
 var uaparser = require('ua-parser');
+var chalk = require('chalk');
 var _ = require('underscore');
 
 /* GET home page. */
@@ -74,7 +75,9 @@ exports.usages = function(req, res){
  *
  */
 exports.getavgtime = function(req, res){
-	var reqUrl = req.query.cUrl;
+	var reqUrl = req.body.url;
+
+	console.log(chalk.magenta("Request for avg time chart data ", chalk.underline(reqUrl)));
 
 	if (reqUrl == null)
 	{
