@@ -28,9 +28,32 @@ var options = {
 			series: null
 		};
 
+function loadChart(url, divs){
+	$.ajax({
+	  type: "POST",
+	  url: '/getavgtime',
+	  data: { 'url': url },
+	  success: function(data){
+		var home_chart_options = options;
+		home_chart_options.title.text = 'Avg. time spent on ' + url;
+		home_chart_options.xAxis.categories = data.xAxis;
+		home_chart_options.series = data.yAxis;
+		$.each(divs, function(index, value){
+			$(value).highcharts(home_chart_options);
+		});
+	  },
+	  dataType: 'json'
+	});
+}
+
 $(document).ready(function(){
 	$('#reqs').dataTable();
 	$('#durations').dataTable();
+
+	$('#pg_selector').on('change', function(){
+		var val = $(this).val();
+		loadChart(val, ['#avg_container']);
+	});
 });
 
 $(function () {

@@ -77,6 +77,14 @@ block content
            td
              = item.simple_date
       div.col-md-6
+       div.pull.pull-right
+        | Change page&nbsp;&nbsp;
+        select#pg_selector
+         option(value='/') /
+         option(value='/about') /about
+         option(value='/contact') /contact
+         option(value='/dashboard') /dashboard
+         option(value='/settings') /settings
        div#avg_container(style='height: 300px; margin: 0 auto;')
     div#settings.tab-pane
      br
