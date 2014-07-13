@@ -32,10 +32,10 @@ app.get('/contact', routes.contact);
 app.get('/dashboard', routes.dashboard);
 app.get('/settings', routes.settings);
 
-app.get('/usages', routes.usages);
-app.post('/record', routes.record);
-app.post('/getavgtime', routes.getavgtime);
-app.get('/getrequestct', routes.getrequestct);
+app.get('/page-analytics/usages', routes.usages);
+app.post('/page-analytics/record', routes.record);
+app.post('/page-analytics/getavgtime', routes.getavgtime);
+app.get('/page-analytics/getrequestct', routes.getrequestct);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

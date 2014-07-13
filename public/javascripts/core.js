@@ -31,7 +31,7 @@ var options = {
 function loadChart(url, divs){
 	$.ajax({
 	  type: "POST",
-	  url: '/getavgtime',
+	  url: '/page-analytics/getavgtime',
 	  data: { 'url': url },
 	  success: function(data){
 		var home_chart_options = options;
@@ -59,7 +59,7 @@ $(document).ready(function(){
 $(function () {
 	$.ajax({
 	  type: "POST",
-	  url: '/getavgtime',
+	  url: '/page-analytics/getavgtime',
 	  data: { 'url': '/' },
 	  success: function(data){
 		var home_chart_options = options;
@@ -72,7 +72,7 @@ $(function () {
 	  dataType: 'json'
 	});
 
-	$.getJSON('/getrequestct', function(json){
+	$.getJSON('/page-analytics/getrequestct', function(json){
 		$('#req-container').highcharts(
 			{
 				chart: {

@@ -6,7 +6,7 @@ $(window).on('beforeunload', function(){
 	console.log('reporting time spent ' + $('#secresult').val());
 	$.ajax({
         type: 'POST',
-        url: '/record',
+        url: '/page-analytics/record',
         async: false,
 		dataType: 'json',
 		data: { 'url': window.location.pathname, 'seconds': $('#secresult').val() },
