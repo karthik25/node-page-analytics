@@ -5,6 +5,6 @@ module.exports = {
     database: 'page-analytics'
   },
   analytics: {
-	excludes: ['/usages'] // A list of urls to exclude from being tracked -- an exact match is performed
+	excludes: ['/page-analytics/usages'] // A list of urls to exclude from being tracked -- an exact match is performed
   }
 };
