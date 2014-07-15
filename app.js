@@ -36,6 +36,7 @@ app.get('/page-analytics/usages', routes.usages);
 app.post('/page-analytics/record', routes.record);
 app.post('/page-analytics/getavgtime', routes.getavgtime);
 app.get('/page-analytics/getrequestct', routes.getrequestct);
+app.post('/page-analytics/getrequests', routes.getrequests);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

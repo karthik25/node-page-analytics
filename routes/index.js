@@ -122,6 +122,34 @@ exports.getrequestct = function(req, res){
 	});
 };
 
+exports.getrequests = function(req, res) {
+	var reqUrl = req.body.url;
+
+	db.getAnalytics(function(items){
+		items.forEach(function(item){
+			item.simple_date = getDateStr(item.date_time);
+		});
+
+		var itemsForUrl = _.filter(items, function(entry) {
+			return entry.url === reqUrl;
+		});
+
+		var groups = _.groupBy(itemsForUrl, 'simple_date');
+
+		var data = {
+			xAxis: [],
+			yAxis: []
+		};
+
+		_.each(groups, function(gp){
+			data.xAxis.push(_.first(gp).simple_date);
+			data.yAxis.push(gp.length);
+		});
+
+		res.json(data);
+	});
+};
+
 function getTimeSpent(sec) {
     if (sec < 60) {
         return sec + " seconds";

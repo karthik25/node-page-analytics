@@ -7,6 +7,7 @@ block content
   link(rel='stylesheet' href='http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css')
   script(type='text/javascript' src='http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js')
   script(type='text/javascript' src='/javascripts/highcharts.js')
+  script(type='text/javascript' src='/javascripts/highcharts-3d.js')
   script(type='text/javascript' src='/javascripts/exporting.js')
   ul#tabs.nav.nav-tabs(role='tablist', data-tabs='tabs')
    li.active
@@ -51,7 +52,7 @@ block content
            td
              = item.simple_date
       div.col-md-6
-       | Some chart content
+       div#req_container(style='height: 300px; margin: 0 auto;')
     div#avgtimes.tab-pane
      br
      div.row

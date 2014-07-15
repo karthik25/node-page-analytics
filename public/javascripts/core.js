@@ -28,6 +28,35 @@ var options = {
 			series: null
 		};
 
+var req_options = {
+	chart: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 50,
+                viewDistance: 25
+            }
+        },
+		xAxis: {
+				categories: null
+			},
+        title: {
+            text: 'Chart rotation demo'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        series: [{
+            name: '/',
+			data: null
+        }]
+   };
+
 function loadChart(url, divs){
 	$.ajax({
 	  type: "POST",
@@ -80,6 +109,20 @@ $(function () {
 		home_chart_options.series = data.yAxis;
 		$('#container').highcharts(home_chart_options);
 		$('#avg_container').highcharts(home_chart_options);		  
+	  },
+	  dataType: 'json'
+	});
+
+	$.ajax({
+	  type: "POST",
+	  url: '/page-analytics/getrequests',
+	  data: { 'url': '/' },
+	  success: function(data){
+		var req_chart_options = req_options;
+		req_chart_options.title.text = 'No. of Requests for /';
+		req_chart_options.xAxis.categories = data.xAxis;
+		req_chart_options.series[0].data = data.yAxis;
+		$('#req_container').highcharts(req_chart_options);		  
 	  },
 	  dataType: 'json'
 	});
