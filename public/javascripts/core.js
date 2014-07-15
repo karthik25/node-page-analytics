@@ -50,6 +50,18 @@ $(document).ready(function(){
 	$('#reqs').dataTable();
 	$('#durations').dataTable();
 
+	$('#durations tbody').on( 'click', 'tr', function () {
+		var anchor = $(this).find('td:eq(0) > a');
+		var url = $(anchor).attr('href');
+        if ($('#pg_selector').val() === url)
+        {
+			return;
+        }
+
+		loadChart(url, ['#avg_container']);
+		$('#pg_selector').val(url);
+    } );
+
 	$('#pg_selector').on('change', function(){
 		var val = $(this).val();
 		loadChart(val, ['#avg_container']);
