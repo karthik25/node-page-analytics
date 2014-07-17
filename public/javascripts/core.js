@@ -52,7 +52,7 @@ var req_options = {
             }
         },
         series: [{
-            name: '/',
+            name: '',
 			data: null
         }]
    };
@@ -70,6 +70,23 @@ function loadChart(url, divs){
 		$.each(divs, function(index, value){
 			$(value).highcharts(home_chart_options);
 		});
+	  },
+	  dataType: 'json'
+	});
+}
+
+function loadRequestChart(url){	
+	$.ajax({
+	  type: "POST",
+	  url: '/page-analytics/getrequests',
+	  data: { 'url': url },
+	  success: function(data){
+		var req_chart_options = req_options;
+		req_chart_options.title.text = 'No. of Requests for ' + url;
+		req_chart_options.xAxis.categories = data.xAxis;
+		req_chart_options.series[0].name = url;
+		req_chart_options.series[0].data = data.yAxis;
+		$('#req_container').highcharts(req_chart_options);		  
 	  },
 	  dataType: 'json'
 	});
@@ -95,19 +112,7 @@ $(document).ready(function(){
 		var anchor = $(this).find('td:eq(0) > a');
 		var url = $(anchor).attr('href');		
 
-		$.ajax({
-		  type: "POST",
-		  url: '/page-analytics/getrequests',
-		  data: { 'url': url },
-		  success: function(data){
-			var req_chart_options = req_options;
-			req_chart_options.title.text = 'No. of Requests for ' + url;
-			req_chart_options.xAxis.categories = data.xAxis;
-			req_chart_options.series[0].data = data.yAxis;
-			$('#req_container').highcharts(req_chart_options);		  
-		  },
-		  dataType: 'json'
-		});		
+		loadRequestChart(url);
     } );
 
 	$('#pg_selector').on('change', function(){
@@ -132,19 +137,7 @@ $(function () {
 	  dataType: 'json'
 	});
 
-	$.ajax({
-	  type: "POST",
-	  url: '/page-analytics/getrequests',
-	  data: { 'url': '/' },
-	  success: function(data){
-		var req_chart_options = req_options;
-		req_chart_options.title.text = 'No. of Requests for /';
-		req_chart_options.xAxis.categories = data.xAxis;
-		req_chart_options.series[0].data = data.yAxis;
-		$('#req_container').highcharts(req_chart_options);		  
-	  },
-	  dataType: 'json'
-	});
+	loadRequestChart('/');
 
 	$.getJSON('/page-analytics/getrequestct', function(json){
 		$('#req-container').highcharts(
