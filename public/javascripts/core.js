@@ -91,6 +91,25 @@ $(document).ready(function(){
 		$('#pg_selector').val(url);
     } );
 
+	$('#reqs tbody').on( 'click', 'tr', function () {
+		var anchor = $(this).find('td:eq(0) > a');
+		var url = $(anchor).attr('href');		
+
+		$.ajax({
+		  type: "POST",
+		  url: '/page-analytics/getrequests',
+		  data: { 'url': url },
+		  success: function(data){
+			var req_chart_options = req_options;
+			req_chart_options.title.text = 'No. of Requests for ' + url;
+			req_chart_options.xAxis.categories = data.xAxis;
+			req_chart_options.series[0].data = data.yAxis;
+			$('#req_container').highcharts(req_chart_options);		  
+		  },
+		  dataType: 'json'
+		});		
+    } );
+
 	$('#pg_selector').on('change', function(){
 		var val = $(this).val();
 		loadChart(val, ['#avg_container']);
