@@ -119,6 +119,20 @@ $(document).ready(function(){
 		var val = $(this).val();
 		loadChart(val, ['#avg_container']);
 	});
+
+	$('#remove').on('click', function(){
+		$.ajax({
+		  type: "POST",
+		  url: '/page-analytics/remove-all',
+		  success: function(data){
+			$('#status').addClass('alert alert-success').html('Successfully deleted all the records').show();
+			setTimeout(function(){
+				$('#status').hide('slow').html('').removeClass('alert alert-success');
+			}, 3000);
+		  },
+		  dataType: 'json'
+		});
+	});
 });
 
 $(function () {

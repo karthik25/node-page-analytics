@@ -38,6 +38,7 @@ app.post('/page-analytics/record', analytics.record);
 app.post('/page-analytics/getavgtime', analytics.getavgtime);
 app.get('/page-analytics/getrequestct', analytics.getrequestct);
 app.post('/page-analytics/getrequests', analytics.getrequests);
+app.post('/page-analytics/remove-all', analytics.removeAll);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

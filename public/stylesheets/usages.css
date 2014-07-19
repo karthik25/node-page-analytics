@@ -5,3 +5,7 @@
 #requests tr {
 	cursor: pointer
 }
+
+#status {
+	display: none
+}

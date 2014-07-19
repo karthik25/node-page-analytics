@@ -36,3 +36,11 @@ exports.getAnalytics = function(callback){
 		callback(items);
 	});
 };
+
+exports.removeAll = function(callback){
+	var collection = db.collection('time_spent');
+
+	collection.remove({}, function(){
+		callback();
+	});
+};

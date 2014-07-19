@@ -129,6 +129,12 @@ exports.getrequests = function(req, res) {
 	});
 };
 
+exports.removeAll = function(req, res){
+	db.removeAll(function(){
+		res.json({ result: true });
+	});
+};
+
 function getTimeSpent(sec) {
     if (sec < 60) {
         return sec + " seconds";

@@ -9,6 +9,8 @@ block content
   script(type='text/javascript' src='/javascripts/highcharts.js')
   script(type='text/javascript' src='/javascripts/highcharts-3d.js')
   script(type='text/javascript' src='/javascripts/exporting.js')
+  br
+  div#status
   ul#tabs.nav.nav-tabs(role='tablist', data-tabs='tabs')
    li.active
     a(href='#home', role='tab', data-toggle='tab') Dashboard
@@ -104,7 +106,7 @@ block content
        .panel.panel-default
         .panel-heading Purge Analytics Data
         .panel-body
-         a.btn.btn-danger
+         a.btn.btn-danger(id='remove')
           | Delete All Data
          br
          br
