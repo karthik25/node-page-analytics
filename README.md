@@ -4,9 +4,10 @@
 Notice: This app is currently under development and so is not fully tested.
 ```
 
-We all have a lot of applications/plugins etc etc. that tracks the number of requests for a web applications on a
-per page level. But this is just a different take on the same approach. Here apart from counting a request, I also
-attempt to keep track of how long a person spent on every page using web workers, so as to be non-intrusive. 
+We all have seen/used/created a lot of applications/plugins etc etc. that tracks the number of requests for a web 
+applications on a per page level. But this is just a different take on the same approach. Here, apart from keeping 
+track of a request from a user, I also attempt to keep track of how much time was spent on every page using web 
+workers, so as to be non-intrusive (sort of - for now there is a display in every page indicating the time spent).
 
 As is evident from the project this app is based on Node.JS/ExpressJS. I am trying to make it as simple as possible
 to extract the section that is responsible for page analytics and plug it in to your application! Once I figure out
