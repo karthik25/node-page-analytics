@@ -42,9 +42,14 @@ var req_options = {
         },
 		xAxis: {
 				categories: null
-			},
+		},
+		yAxis: {
+			title: { 
+				text: 'No.of Requests'
+			}
+		},
         title: {
-            text: 'Chart rotation demo'
+            text: ''
         },
         plotOptions: {
             column: {

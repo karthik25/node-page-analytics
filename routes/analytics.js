@@ -138,6 +138,16 @@ exports.getrequests = function(req, res) {
 			data.yAxis.push(gp.length);
 		});
 
+		var dataLength = data.xAxis.length;
+		if (dataLength > 10)
+		{
+			var start = 0;
+			var end = dataLength-10;
+
+			data.xAxis.splice(start, end);
+			data.yAxis.splice(start, end);
+		}
+
 		res.json(data);
 	});
 };
