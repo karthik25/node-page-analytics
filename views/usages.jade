@@ -19,6 +19,8 @@ block content
    li
      a(href='#avgtimes', role='tab', data-toggle='tab') Avg. Time Spent
    li
+     a(href='#browser', role='tab', data-toggle='tab') Browser
+   li
      a(href='#settings', role='tab', data-toggle='tab') Settings
   div#tab-content.tab-content
     div#home.tab-pane.active
@@ -90,6 +92,9 @@ block content
          option(value='/dashboard') /dashboard
          option(value='/settings') /settings
        div#avg_container(style='height: 300px; margin: 0 auto;')
+    div#browser.tab-pane
+     br
+     | ...
     div#settings.tab-pane
      br
      div.row

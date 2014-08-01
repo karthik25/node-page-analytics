@@ -23,7 +23,7 @@ more about Node.JS I may convert this in to plugin (if possible) or something el
 
 ## What's Available?
 
-Page analytcs itself is a single page app with number of tabs. In the first tab you get to see a line chart for the average 
+Page analytics itself is a single page app with number of tabs. In the first tab you get to see a line chart for the average 
 time spent by users on the home page and also a pie chart depicting the top 5 pages by number of requests. Then there is a tab
 that list all the requests so far a paged list along with a 3D bar chart for number of requests for a page, starting with the
 home page as the default. Users can click on the table to switch pages or use the dropdown on top of the chart. Then the next 

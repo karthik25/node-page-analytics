@@ -67,7 +67,10 @@ exports.getavgtime = function(req, res){
 	db.getAnalytics(function(items){
 		var urlItems = _.filter(items, function(item){ return item.url === reqUrl });
 
-		_.each(urlItems, function(item) { item.simple_user_agent = uaparser.parse(item.user_agent).ua.toString(); item.simple_date = getDateStr(item.date_time); });
+		_.each(urlItems, function(item) { 
+			item.simple_user_agent = uaparser.parse(item.user_agent).ua.toString(); 
+			item.simple_date = getDateStr(item.date_time); 
+		});
 		var groups = _.groupBy(urlItems, 'simple_date');
 
 		var data = {
@@ -81,6 +84,16 @@ exports.getavgtime = function(req, res){
 		    var avg = Math.round(total / group.length);
 			data.yAxis[0].data.push(avg);
 		});
+	
+		var dataLength = data.xAxis.length;
+		if (dataLength > 10)
+		{
+			var start = 0;
+			var end = dataLength-10;
+
+			data.xAxis.splice(start, end);
+			data.yAxis[0].data.splice(start, end);
+		}
 
 		res.json(data);
 	});
