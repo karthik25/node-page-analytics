@@ -152,6 +152,27 @@ exports.getrequests = function(req, res) {
 	});
 };
 
+exports.getbrowsershares = function(req, res){
+	db.getAnalytics(function(items){
+		_.each(items, function(item) { 
+			item.simple_user_agent = uaparser.parse(item.user_agent).ua.toString(); 
+		});
+		var groups = _.groupBy(items, 'simple_user_agent');
+
+		var data = [];
+
+		_.each(groups, function(gp){
+			var entry = [];
+			entry.push(_.first(gp).simple_user_agent);
+			entry.push(Math.round((gp.length / items.length) * 100));
+
+			data.push(entry);
+		});
+
+		res.json(data);
+	});
+};
+
 exports.removeAll = function(req, res){
 	db.removeAll(function(){
 		res.json({ result: true });

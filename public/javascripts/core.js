@@ -63,7 +63,7 @@ var req_options = {
    };
 
 var browser_options = {
-chart: {
+		chart: {
             type: 'pie',
             options3d: {
 				enabled: true,
@@ -91,19 +91,7 @@ chart: {
         series: [{
             type: 'pie',
             name: 'Browser share',
-            data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
-                {
-                    name: 'Chrome',
-                    y: 12.8,
-                    sliced: true,
-                    selected: true
-                },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
-            ]
+            data: null
         }]
 	};
 
@@ -171,8 +159,6 @@ $(document).ready(function(){
 		loadChart(val, ['#avg_container']);
 	});
 
-	$('#browser_container').highcharts(browser_options);
-
 	$('#remove').on('click', function(){
 		$.ajax({
 		  type: "POST",
@@ -200,6 +186,18 @@ $(function () {
 		home_chart_options.series = data.yAxis;
 		$('#container').highcharts(home_chart_options);
 		$('#avg_container').highcharts(home_chart_options);		  
+	  },
+	  dataType: 'json'
+	});
+
+	$.ajax({
+	  type: "POST",
+	  url: '/page-analytics/getbrowsershares',
+	  data: { 'url': '/' },
+	  success: function(data){
+		var browser_chart_options = browser_options;
+		browser_chart_options.series[0].data = data;
+		$('#browser_container').highcharts(browser_chart_options);		  
 	  },
 	  dataType: 'json'
 	});
