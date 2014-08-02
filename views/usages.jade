@@ -94,7 +94,45 @@ block content
        div#avg_container(style='height: 300px; margin: 0 auto;')
     div#browser.tab-pane
      br
-     | ...
+     div.row
+      div.col-md-6
+       table#shares(border="1", cellpadding="15", class="table table-striped table-bordered")
+        thead
+         tr
+          th Browser
+          th Count
+        tfoot
+         tr
+          th Browser
+          th Count
+        tbody
+          tr
+           td
+            | Chrome
+           td
+            | 45%
+          tr
+           td
+            | IE 9.0
+           td
+            | 35%
+          tr
+           td
+            | IE 10.0
+           td
+            | 10%
+          tr
+           td
+            | Firefox
+           td
+            | 5%
+          tr
+           td
+            | Other
+           td
+            | 5%
+      div.col-md-6
+       div#browser_container(style='height: 300px; margin: 0 auto;')
     div#settings.tab-pane
      br
      div.row
