@@ -39,7 +39,7 @@ exports.usages = function(req, res){
 			item.description = getTimeSpent(item.secs);
 			item.simple_date = getDateStr(item.date_time);
 		});
-		res.render('usages', { title: 'Express :: Usage Stats',items: items });
+		res.render('pageAnalytics/usages', { title: 'Express :: Usage Stats',items: items });
 	});
 };
 

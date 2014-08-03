@@ -1,19 +1,19 @@
 exports.index = function(req, res){
-  res.render('index', { title: 'Express :: Index' });
+  res.render('index/index', { title: 'Express :: Index' });
 };
 
 exports.about = function(req, res){
-  res.render('about', { title: 'Express :: About' });
+  res.render('index/about', { title: 'Express :: About' });
 };
 
 exports.contact = function(req, res){
-  res.render('contact', { title: 'Express :: Contact' });
+  res.render('index/contact', { title: 'Express :: Contact' });
 };
 
 exports.dashboard = function(req, res){
-  res.render('dashboard', { title: 'Express :: Dashboard' });
+  res.render('index/dashboard', { title: 'Express :: Dashboard' });
 };
 
 exports.settings = function(req, res){
-  res.render('settings', { title: 'Express :: Settings' });
+  res.render('index/settings', { title: 'Express :: Settings' });
 };
