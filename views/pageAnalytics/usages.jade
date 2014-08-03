@@ -106,33 +106,19 @@ block content
           th Browser
           th Count
         tbody
+         - each item in browserItems.entries
           tr
            td
-            | Chrome
+            = item.user_agent
            td
-            | 45%
-          tr
-           td
-            | IE 9.0
-           td
-            | 35%
-          tr
-           td
-            | IE 10.0
-           td
-            | 10%
-          tr
-           td
-            | Firefox
-           td
-            | 5%
-          tr
-           td
-            | Other
-           td
-            | 5%
+             = item.no_requests
       div.col-md-6
        div#browser_container(style='height: 300px; margin: 0 auto;')
+     div.row
+      div.col-md-6
+       | Total no.of requests:
+       span(style="font-weight: bold")
+        = browserItems.total
     div#settings.tab-pane
      br
      div.row

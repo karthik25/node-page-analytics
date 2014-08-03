@@ -39,7 +39,21 @@ exports.usages = function(req, res){
 			item.description = getTimeSpent(item.secs);
 			item.simple_date = getDateStr(item.date_time);
 		});
-		res.render('pageAnalytics/usages', { title: 'Express :: Usage Stats',items: items });
+
+		var groups = getGroupsByBrowser(items);
+		
+		var data = { total: items.length, entries: [] };
+
+		_.each(groups, function(gp){
+			var entry = { };
+			entry.user_agent = _.first(gp).simple_user_agent;
+			entry.no_requests = gp.length;
+
+			data.entries.push(entry);
+		});
+
+
+		res.render('pageAnalytics/usages', { title: 'Express :: Usage Stats', items: items, browserItems: data });
 	});
 };
 
