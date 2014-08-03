@@ -27,7 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 app.get('/', routes.index);
-app.get('/users', users.list);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/dashboard', routes.dashboard);
