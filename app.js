@@ -9,7 +9,6 @@ var chalk = require('chalk');
 
 var routes = require('./routes');
 var analytics = require('./routes/analytics');
-var users = require('./routes/user');
 
 var app = express();
 

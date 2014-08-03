@@ -153,11 +153,8 @@ exports.getrequests = function(req, res) {
 };
 
 exports.getbrowsershares = function(req, res){
-	db.getAnalytics(function(items){
-		_.each(items, function(item) { 
-			item.simple_user_agent = uaparser.parse(item.user_agent).ua.toString(); 
-		});
-		var groups = _.groupBy(items, 'simple_user_agent');
+	db.getAnalytics(function(items){		
+		var groups = getGroupsByBrowser(items);
 
 		var data = [];
 
@@ -178,6 +175,14 @@ exports.removeAll = function(req, res){
 		res.json({ result: true });
 	});
 };
+
+function getGroupsByBrowser(items){
+	_.each(items, function(item) { 
+		item.simple_user_agent = uaparser.parse(item.user_agent).ua.toString(); 
+	});
+	var groups = _.groupBy(items, 'simple_user_agent');
+	return groups;
+}
 
 function getTimeSpent(sec) {
     if (sec < 60) {
