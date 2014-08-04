@@ -1,0 +1,13 @@
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal')
+              span(aria-hidden='true') &times;
+              span.sr-only Close
+            h4#myModalLabel.modal-title Are you sure?
+          .modal-body
+            | This action will delete everything recorded so far. Are you sure you want to do this? This action cannot be undone!
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') No, Please!
+            button.btn.btn-danger(type='button', id='remove') Yes, I'm Sure...

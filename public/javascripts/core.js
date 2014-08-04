@@ -160,6 +160,7 @@ $(document).ready(function(){
 	});
 
 	$('#remove').on('click', function(){
+		$('#myModal').modal('hide');
 		$.ajax({
 		  type: "POST",
 		  url: '/page-analytics/remove-all',

@@ -11,6 +11,7 @@ block content
   script(type='text/javascript' src='/javascripts/exporting.js')
   br
   div#status
+  include delete-warning
   ul#tabs.nav.nav-tabs(role='tablist', data-tabs='tabs')
    li.active
     a(href='#home', role='tab', data-toggle='tab') Dashboard
@@ -135,7 +136,7 @@ block content
        .panel.panel-default
         .panel-heading Purge Analytics Data
         .panel-body
-         a.btn.btn-danger(id='remove')
+         a.btn.btn-danger(data-toggle='modal', data-target='#myModal')
           | Delete All Data
          br
          br
