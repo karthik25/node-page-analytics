@@ -55,7 +55,7 @@ exports.exportCollection = function(callback) {
 		var docStr = bson.toJsonString(items[i]);
 		aItems.push(docStr);
       }
-	});
 
-	callback(aItems);
+	  callback(aItems);
+	});	
 };
