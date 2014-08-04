@@ -38,6 +38,7 @@ app.get('/page-analytics/getrequestct', analytics.getrequestct);
 app.post('/page-analytics/getrequests', analytics.getrequests);
 app.post('/page-analytics/remove-all', analytics.removeAll);
 app.post('/page-analytics/getbrowsershares', analytics.getbrowsershares);
+app.get('/page-analytics/export-all', analytics.exportAll);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

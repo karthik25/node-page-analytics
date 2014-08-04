@@ -2,6 +2,7 @@ var db = require('../persist');
 var config = require('../config');
 var uaparser = require('ua-parser');
 var chalk = require('chalk');
+var os = require('os');
 var _ = require('underscore');
 
 exports.record = function(req, res){
@@ -187,6 +188,15 @@ exports.getbrowsershares = function(req, res){
 exports.removeAll = function(req, res){
 	db.removeAll(function(){
 		res.json({ result: true });
+	});
+};
+
+exports.exportAll = function(req, res) {
+	db.exportCollection(function(items){
+	  res.setHeader('Content-disposition', 'attachment; filename=time_spent.json');
+	  res.setHeader('Content-type', 'application/json');
+	  res.write(items.join(os.EOL));
+	  res.end();
 	});
 };
 

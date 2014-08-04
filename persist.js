@@ -1,6 +1,7 @@
 var mongodb = require('mongodb');
 var chalk = require('chalk');
 var config = require('./config');
+var bson = require('./bson');
 
 //Set up database stuff
 var host = config.mongodb.server || 'localhost';
@@ -43,4 +44,18 @@ exports.removeAll = function(callback){
 	collection.remove({}, function(){
 		callback();
 	});
+};
+
+exports.exportCollection = function(callback) {
+	var collection = db.collection('time_spent');
+
+	var aItems = [];
+	collection.find().toArray(function(err, items){
+	  for(var i in items) {
+		var docStr = bson.toJsonString(items[i]);
+		aItems.push(docStr);
+      }
+	});
+
+	callback(aItems);
 };
