@@ -6,11 +6,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var chalk = require('chalk');
+var parseArgs = require('minimist');
 
 var routes = require('./routes');
 var analytics = require('./routes/analytics');
 
 var app = express();
+
+var argv = parseArgs(process.argv.slice(2));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -69,7 +72,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-console.log(chalk.black.bgBlue.bold("Listening for requests at 3000"));
-app.listen(3000);
+console.log(chalk.black.bgBlue.bold("Listening for requests at " + (argv.port || 3000)));
+app.listen(argv.port || 3000);
 
 module.exports = app;
