@@ -87,28 +87,25 @@ exports.getavgtime = function(req, res){
 			item.simple_date = getDateStr(item.date_time); 
 		});
 		var groups = _.groupBy(urlItems, 'simple_date');
+		var sortedGroups = _.sortBy(groups, function(group){ return new Date(_.first(group).simple_date) });
+		var lastTen = sortedGroups;
+
+		if (lastTen.length > 10)
+		{
+			lastTen = _.rest(lastTen, (lastTen.length - 10 - 1));
+		}
 
 		var data = {
 			xAxis: [],
 			yAxis: [ { name: reqUrl, data: [] } ]
 		};
 
-		_.each(groups, function(group){
+		_.each(lastTen, function(group){
 			data.xAxis.push(_.first(group).simple_date);
 			var total = _.reduce(group, function(memo, item){ return memo + parseInt(item.secs); }, 0);
 		    var avg = Math.round(total / group.length);
 			data.yAxis[0].data.push(avg);
 		});
-	
-		var dataLength = data.xAxis.length;
-		if (dataLength > 10)
-		{
-			var start = 0;
-			var end = dataLength-10;
-
-			data.xAxis.splice(start, end);
-			data.yAxis[0].data.splice(start, end);
-		}
 
 		res.json(data);
 	});
@@ -237,7 +234,11 @@ function getItems(entries, count){
        return item.count * -1;   
     });
 
-    var ct = sgps.length <= count ? sgps.length : sgps.length - count;    
-    var rPages = _.initial(sgps, ct);   
+	var rPages = sgps;
+	if (rPages.length > count)
+	{
+		rPages = _.rest(sgps, (rPages.length - count - 1));
+	}
+
     return rPages;
 }
