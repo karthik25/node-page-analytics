@@ -7,9 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var chalk = require('chalk');
 var parseArgs = require('minimist');
-
+var config = require('./config');
+var mongoose = require('mongoose');
 var routes = require('./routes');
 var analytics = require('./routes/analytics');
+
+mongoose.connect(config.mongodb.connectionString);
 
 var app = express();
 

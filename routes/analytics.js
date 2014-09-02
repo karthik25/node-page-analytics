@@ -1,4 +1,4 @@
-var db = require('../persist');
+var db = require('../persist-mongoose');
 var config = require('../config');
 var uaparser = require('ua-parser');
 var chalk = require('chalk');
