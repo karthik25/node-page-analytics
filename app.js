@@ -29,7 +29,23 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
+
+// Configure passport
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({ secret: 'mySecretKey' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+var authHelper = require('./passport/auth_helper');
 
 app.get('/', routes.index);
 app.get('/about', routes.about);
@@ -37,7 +53,7 @@ app.get('/contact', routes.contact);
 app.get('/dashboard', routes.dashboard);
 app.get('/settings', routes.settings);
 
-app.get('/page-analytics/usages', analytics.usages);
+app.get('/page-analytics/usages', authHelper.isAuthenticated, analytics.usages);
 app.post('/page-analytics/record', analytics.record);
 app.post('/page-analytics/getavgtime', analytics.getavgtime);
 app.get('/page-analytics/getrequestct', analytics.getrequestct);
@@ -45,6 +61,9 @@ app.post('/page-analytics/getrequests', analytics.getrequests);
 app.post('/page-analytics/remove-all', analytics.removeAll);
 app.post('/page-analytics/getbrowsershares', analytics.getbrowsershares);
 app.get('/page-analytics/export-all', analytics.exportAll);
+
+var routes = require('./routes/auth')(passport);
+app.use('/', routes);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
