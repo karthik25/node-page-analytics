@@ -55,12 +55,12 @@ app.get('/settings', routes.settings);
 
 app.get('/page-analytics/usages', authHelper.isAuthenticated, analytics.usages);
 app.post('/page-analytics/record', analytics.record);
-app.post('/page-analytics/getavgtime', analytics.getavgtime);
-app.get('/page-analytics/getrequestct', analytics.getrequestct);
-app.post('/page-analytics/getrequests', analytics.getrequests);
-app.post('/page-analytics/remove-all', analytics.removeAll);
-app.post('/page-analytics/getbrowsershares', analytics.getbrowsershares);
-app.get('/page-analytics/export-all', analytics.exportAll);
+app.post('/page-analytics/getavgtime', authHelper.isAuthenticated, analytics.getavgtime);
+app.get('/page-analytics/getrequestct', authHelper.isAuthenticated, analytics.getrequestct);
+app.post('/page-analytics/getrequests', authHelper.isAuthenticated, analytics.getrequests);
+app.post('/page-analytics/remove-all', authHelper.isAuthenticated, analytics.removeAll);
+app.post('/page-analytics/getbrowsershares', authHelper.isAuthenticated, analytics.getbrowsershares);
+app.get('/page-analytics/export-all', authHelper.isAuthenticated, analytics.exportAll);
 
 var routes = require('./routes/auth')(passport);
 app.use('/', routes);
