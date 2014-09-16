@@ -11,7 +11,7 @@ $(window).on('beforeunload', function(){
 		dataType: 'json',
 		data: { 'url': window.location.pathname, 'seconds': $('#secresult').val() },
         success: function (data) {
-
+			
         }
     });
 });

@@ -20,18 +20,16 @@ exports.record = function(req, res){
 	}
   });
 
-  if (excluded)
-  {
+  if (excluded) {
 	console.log('url is excluded');
 	res.json({ result: false });
-	res.end();
-	return;
   }
-  
-  db.addAnalytic(url, seconds, agent, function(){
-	console.log('callback called');
-	res.json({ result: true });
-  });  
+  else {
+	  db.addAnalytic(url, seconds, agent, function(){
+		console.log('callback called');
+		res.json({ result: true });
+	  });
+  }
 };
 
 exports.usages = function(req, res){

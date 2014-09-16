@@ -14,7 +14,7 @@ module.exports = function(passport){
   /* Handle Login POST */
   router.post('/login', passport.authenticate('login', {
     successRedirect: '/page-analytics/usages',
-    failureRedirect: '/',
+    failureRedirect: '/login',
     failureFlash : true 
   }));
  
