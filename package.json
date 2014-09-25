@@ -24,6 +24,7 @@
     "mongoose": "~3.8.12",
     "bcrypt-nodejs" : "*",
     "connect-flash" : "*",
-    "async": "*"
+    "async": "*",
+    "lodash": "2.4.1"
  }
 }
